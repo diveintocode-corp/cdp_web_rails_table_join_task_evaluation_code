@@ -1,2 +1,0 @@
-class ItalianFood < Food
-end

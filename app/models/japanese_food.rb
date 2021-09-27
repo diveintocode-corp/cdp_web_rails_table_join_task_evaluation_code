@@ -1,2 +1,0 @@
-class JapaneseFood < Food
-end

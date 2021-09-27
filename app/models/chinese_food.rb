@@ -1,2 +1,0 @@
-class ChineseFood < Food
-end
