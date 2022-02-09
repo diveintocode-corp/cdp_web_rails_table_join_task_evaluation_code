@@ -7,10 +7,8 @@ RSpec.describe ExercisesController, type: :controller do
       expect(Food).to receive(:left_outer_joins).and_call_original
       get :exercise1
     end
-    it "注文されていないすべての料理を返すこと" do
+    it "注文されていないすべての料理が@foodsに代入されていること" do
       expect(assigns(:foods)).to match_array foods
-    end
-    it "@foodsのクラスは'Food::ActiveRecord_Relation'であること" do
       expect(assigns(:foods).class.to_s).to eq "Food::ActiveRecord_Relation"
     end
   end
@@ -22,10 +20,8 @@ RSpec.describe ExercisesController, type: :controller do
       expect(Shop).to receive(:left_outer_joins).and_call_original
       get :exercise2
     end
-    it "注文されていない料理を提供しているすべてのお店を返すこと" do
+    it "注文されていない料理を提供しているすべてのお店が@shopsに代入されていること" do
       expect(assigns(:shops)).to match_array shops
-    end
-    it "@shopsのクラスは'Shop::ActiveRecord_Relation'であること" do
       expect(assigns(:shops).class.to_s).to eq "Shop::ActiveRecord_Relation"
     end
   end
@@ -36,7 +32,7 @@ RSpec.describe ExercisesController, type: :controller do
       expect(Address).to receive(:joins).and_call_original
       get :exercise3
     end
-    it "配達先の一番多い住所を返すこと" do
+    it "配達先の一番多い住所が@addressに代入されていること" do
       expect(assigns(:address)).to eq address
     end
     it "@addressにorders_countと呼びかけると注文の数を返すこと" do
@@ -53,7 +49,7 @@ RSpec.describe ExercisesController, type: :controller do
       expect(Customer).to receive(:joins).and_call_original
       get :exercise4
     end
-    it "一番お金を使っている顧客を返すこと" do
+    it "一番お金を使っている顧客が@customerに代入されていること" do
       expect(assigns(:customer)).to eq customer
     end
     it "@customerにfoods_price_sumとと呼びかけると合計金額を返すこと" do
