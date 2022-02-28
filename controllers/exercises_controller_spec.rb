@@ -7,7 +7,7 @@ RSpec.describe ExercisesController, type: :controller do
       expect(Food).to receive(:left_outer_joins).and_call_original
       get :exercise1
     end
-    it "注文されていないすべての料理が`@foods`に代入されていること" do
+    it "All dishes that have not been ordered are assigned to `@foods`." do
       expect(assigns(:foods)).to match_array foods
       expect(assigns(:foods).class.to_s).to eq "Food::ActiveRecord_Relation"
     end
@@ -20,7 +20,7 @@ RSpec.describe ExercisesController, type: :controller do
       expect(Shop).to receive(:left_outer_joins).and_call_original
       get :exercise2
     end
-    it "注文されていない料理を提供しているすべてのお店が`@shops`に代入されていること" do
+    it "All stores that serve food that has not been ordered are assigned to `@shops`." do
       expect(assigns(:shops)).to match_array shops
       expect(assigns(:shops).class.to_s).to eq "Shop::ActiveRecord_Relation"
     end
@@ -32,10 +32,10 @@ RSpec.describe ExercisesController, type: :controller do
       expect(Address).to receive(:joins).and_call_original
       get :exercise3
     end
-    it "配達先の一番多い住所が`@address`に代入されていること" do
+    it "The most common delivery address is assigned to `@address``." do
       expect(assigns(:address)).to eq address
     end
-    it "`@address`に`orders_count`と呼びかけると注文の数を返すこと" do
+    it "Calling `@address` with `orders_count` will return the number of orders." do
       expect(assigns(:address).orders_count).to eq address.orders.size
     end
   end
@@ -49,10 +49,10 @@ RSpec.describe ExercisesController, type: :controller do
       expect(Customer).to receive(:joins).and_call_original
       get :exercise4
     end
-    it "一番お金を使っている顧客が`@customer`に代入されていること" do
+    it "The customer who spends the most money is assigned to `@customer`." do
       expect(assigns(:customer)).to eq customer
     end
-    it "`@customer`に`foods_price_sum`と呼びかけると合計金額を返すこと" do
+    it "Calling `foods_price_sum` on `@customer` returns the total amount." do
       expect(assigns(:customer).foods_price_sum).to eq customer.foods_price_sum
     end
   end
